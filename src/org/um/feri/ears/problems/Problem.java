@@ -6,6 +6,8 @@ import org.um.feri.ears.quality_indicator.QualityIndicator;
 import org.um.feri.ears.util.Util;
 import org.um.feri.ears.util.comparator.DominanceComparator;
 
+import java.util.List;
+
 public abstract class Problem<S extends Solution> {
 
     protected int numberOfObjectives;
@@ -46,6 +48,7 @@ public abstract class Problem<S extends Solution> {
     }
 
     public abstract void evaluate(S solution);
+    public abstract void bulkEvaluate(List<S> solution);
 
     /**
      * Makes the provided solution feasible.
