@@ -25,13 +25,14 @@ package org.um.feri.ears.util.comparator;
 import org.um.feri.ears.problems.NumberSolution;
 import org.um.feri.ears.problems.Solution;
 
+import java.io.Serializable;
 import java.util.Comparator;
 
 /**
  * This class implements a <code>Comparator</code> (a method for comparing
  * <code>Solution</code> objects) based on a constraint violation test + dominance checking, as in NSGA-II.
  */
-public class DominanceComparator implements Comparator<Solution> {
+public class DominanceComparator implements Comparator<Solution>, Serializable {
 
     private final double epsilon;
     protected boolean[] objectiveMaximizationFlags;

@@ -2,14 +2,15 @@ package org.um.feri.ears.problems;
 
 import org.um.feri.ears.visualization.graphing.recording.GraphDataRecorder;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.concurrent.TimeUnit;
 
-public class Task<S extends Solution, P extends Problem<S>> {
+public class Task<S extends Solution, P extends Problem<S>> implements Serializable {
 
-    public static final class Accessor { private Accessor() {} }
-    private static final Accessor ACCESSOR_INSTANCE = new Accessor();
+    /*public static final class Accessor { private Accessor() {} }
+    private static final Accessor ACCESSOR_INSTANCE = new Accessor();*/
 
     //add "Task.Accessor accessor" to method call
 

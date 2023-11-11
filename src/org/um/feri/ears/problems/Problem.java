@@ -6,9 +6,10 @@ import org.um.feri.ears.quality_indicator.QualityIndicator;
 import org.um.feri.ears.util.Util;
 import org.um.feri.ears.util.comparator.DominanceComparator;
 
+import java.io.Serializable;
 import java.util.List;
 
-public abstract class Problem<S extends Solution> {
+public abstract class Problem<S extends Solution> implements Serializable {
 
     protected int numberOfObjectives;
     protected int numberOfGlobalOptima;
