@@ -12,17 +12,17 @@ import org.um.feri.ears.algorithms.moo.paes.D_PAES;
 import org.um.feri.ears.algorithms.moo.pesa2MOEA.D_PESA2;
 import org.um.feri.ears.algorithms.moo.pso.OMOPSO;
 import org.um.feri.ears.algorithms.moo.spea2.D_SPEA2;
-import org.um.feri.ears.problems.*;
+import org.um.feri.ears.problems.DoubleProblem;
+import org.um.feri.ears.problems.NumberSolution;
+import org.um.feri.ears.problems.StopCriterion;
+import org.um.feri.ears.problems.Task;
 import org.um.feri.ears.problems.moo.ParetoSolution;
 import org.um.feri.ears.problems.moo.zdt.ZDT6;
-import org.um.feri.ears.util.Util;
 
 public class MOSingleRun {
 
 
 	public static void main(String[] args) {
-		
-		Util.rnd.setSeed(System.currentTimeMillis());
 		
 		D_NSGAII nsga2 = new D_NSGAII();
 		D_MOEAD moead = new D_MOEAD();

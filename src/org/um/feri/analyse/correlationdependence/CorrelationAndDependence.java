@@ -1,9 +1,9 @@
 package org.um.feri.analyse.correlationdependence;
 
-import java.util.ArrayList;
+import org.um.feri.ears.problems.DoubleProblem;
+import org.um.feri.ears.util.random.RNG;
 
-import org.um.feri.ears.problems.*;
-import org.um.feri.ears.util.Util;
+import java.util.ArrayList;
 
 public class CorrelationAndDependence {
     // http://en.wikipedia.org/wiki/Correlation_and_dependence
@@ -75,7 +75,7 @@ public class CorrelationAndDependence {
             //create random
             for (int j = 0; j < dim; j++) {
                 Double tmp;
-                tmp = problem.lowerLimit.get(j) + Util.rnd.nextDouble()
+                tmp = problem.lowerLimit.get(j) + RNG.nextDouble()
                         * problem.upperLimit.get(j);
                 ind[j] = tmp;
             }

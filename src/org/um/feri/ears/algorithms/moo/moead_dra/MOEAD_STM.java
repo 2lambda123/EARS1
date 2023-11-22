@@ -12,17 +12,19 @@
 //  along with this program.  If not, see <http://www.gnu.org/licenses/>.
 package org.um.feri.ears.algorithms.moo.moead_dra;
 
-import java.util.LinkedList;
-import java.util.Vector;
-
 import org.um.feri.ears.algorithms.AlgorithmInfo;
 import org.um.feri.ears.algorithms.Author;
 import org.um.feri.ears.algorithms.moo.moead.Utils;
 import org.um.feri.ears.operators.CrossoverOperator;
 import org.um.feri.ears.operators.MutationOperator;
-import org.um.feri.ears.problems.*;
+import org.um.feri.ears.problems.NumberProblem;
+import org.um.feri.ears.problems.NumberSolution;
+import org.um.feri.ears.problems.StopCriterionException;
 import org.um.feri.ears.problems.moo.ParetoSolution;
-import org.um.feri.ears.util.Util;
+import org.um.feri.ears.util.random.RNG;
+
+import java.util.LinkedList;
+import java.util.Vector;
 
 public class MOEAD_STM<N extends Number, P extends NumberProblem<N>> extends MOEAD_DRA<N, P> {
 
@@ -58,7 +60,7 @@ public class MOEAD_STM<N extends Number, P extends NumberProblem<N>> extends MOE
 
         // STEP 2. Update
         do {
-            int[] permutation = Util.randomPermutation(populationSize);
+            int[] permutation = RNG.randomPermutation(populationSize);
             //Utils.randomPermutation(permutation, populationSize);
 
             offspringPopulation.clear();
@@ -69,7 +71,7 @@ public class MOEAD_STM<N extends Number, P extends NumberProblem<N>> extends MOE
                 frequency[n]++;
 
                 int type;
-                double rnd = Util.rnd.nextDouble();
+                double rnd = RNG.nextDouble();
 
                 // STEP 2.1. Mating selection based on probability
                 if (rnd < delta) // if (rnd < realb)

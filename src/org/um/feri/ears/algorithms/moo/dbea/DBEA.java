@@ -17,11 +17,6 @@
  */
 package org.um.feri.ears.algorithms.moo.dbea;
 
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.Comparator;
-import java.util.List;
-
 import org.apache.commons.math3.linear.Array2DRowRealMatrix;
 import org.apache.commons.math3.linear.LUDecomposition;
 import org.apache.commons.math3.linear.MatrixUtils;
@@ -34,9 +29,14 @@ import org.um.feri.ears.operators.CrossoverOperator;
 import org.um.feri.ears.operators.MutationOperator;
 import org.um.feri.ears.problems.*;
 import org.um.feri.ears.problems.moo.ParetoSolution;
-import org.um.feri.ears.util.comparator.ObjectiveComparator;
 import org.um.feri.ears.util.NondominatedPopulation;
-import org.um.feri.ears.util.Util;
+import org.um.feri.ears.util.comparator.ObjectiveComparator;
+import org.um.feri.ears.util.random.RNG;
+
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Comparator;
+import java.util.List;
 
 /* The original Matlab version of I-DBEA was written by Md. Asafuddoula,
  * Tapabrata Ray and Ruhul Sarker.  This class has been tested against their
@@ -198,7 +198,7 @@ public class DBEA<N extends Number, P extends Problem<NumberSolution<N>>> extend
     protected void start() throws StopCriterionException {
 
         do {
-            int[] permutation = Util.randomPermutation(population.size());
+            int[] permutation = RNG.randomPermutation(population.size());
 
             for (int i = 0; i < population.size(); i++) {
                 int n = permutation[i];
@@ -303,7 +303,7 @@ public class DBEA<N extends Number, P extends Problem<NumberSolution<N>>> extend
         }
 
         double[] f2 = normalizedObjectives(child);
-        int[] order = Util.randomPermutation(population.size());
+        int[] order = RNG.randomPermutation(population.size());
 
         if (TESTING_MODE) {
             for (int i = 0; i < order.length; i++) {

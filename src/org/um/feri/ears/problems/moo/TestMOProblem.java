@@ -2,17 +2,17 @@ package org.um.feri.ears.problems.moo;
 
 import org.um.feri.ears.algorithms.moo.ibea.D_IBEA;
 import org.um.feri.ears.algorithms.moo.moead.D_MOEAD;
-import org.um.feri.ears.problems.*;
+import org.um.feri.ears.problems.DoubleProblem;
+import org.um.feri.ears.problems.NumberSolution;
+import org.um.feri.ears.problems.StopCriterion;
+import org.um.feri.ears.problems.Task;
 import org.um.feri.ears.problems.moo.unconstrained.cec2009.UnconstrainedProblem1;
 import org.um.feri.ears.problems.moo.zdt.ZDT1;
 import org.um.feri.ears.quality_indicator.GenerationalDistance;
 import org.um.feri.ears.quality_indicator.InvertedGenerationalDistance;
-import org.um.feri.ears.util.Util;
 
 public class TestMOProblem {
     public static void main(String[] args) {
-    	Util.rnd.setSeed(System.currentTimeMillis());
-    	
     	ZDT1 zdt = new ZDT1();
     	ParetoSolution filePareto = new ParetoSolution();
     	filePareto.loadObjectivesFromFile("test_pareto//ZDT1_middle.dat");

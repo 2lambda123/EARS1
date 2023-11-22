@@ -5,10 +5,8 @@ import org.um.feri.ears.algorithms.so.random.RandomWalkAMAlgorithm;
 import org.um.feri.ears.algorithms.so.random.RandomWalkAlgorithm;
 import org.um.feri.ears.algorithms.so.tlbo.TLBOAlgorithm;
 import org.um.feri.ears.benchmark.Benchmark;
-import org.um.feri.ears.benchmark.SOBenchmark;
-import org.um.feri.ears.benchmark.RPUOed2Benchmark;
 import org.um.feri.ears.benchmark.BenchmarkRunnerBestAlgSettings;
-import org.um.feri.ears.util.Util;
+import org.um.feri.ears.benchmark.RPUOed2Benchmark;
 
 //import net.sourceforge.jswarm_pso.SwarmAlgorithm;
 //import com.erciyes.karaboga.bee.BeeColonyAlgorithm;
@@ -17,7 +15,6 @@ import org.um.feri.ears.util.Util;
 public class Test_01_MainStart {
 
     public static void main(String[] args) {
-        Util.rnd.setSeed(System.currentTimeMillis());
         Benchmark.printInfo = true; //prints one on one results
         BenchmarkRunnerBestAlgSettings rbs = new BenchmarkRunnerBestAlgSettings(true,false, new RPUOed2Benchmark());
         rbs.addAlgorithm(new RandomWalkAlgorithm());

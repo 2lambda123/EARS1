@@ -3,7 +3,6 @@ package org.um.feri.ears.engine;
 import org.um.feri.ears.algorithms.DummyAlgorithm;
 import org.um.feri.ears.benchmark.DummyBenchmark;
 import org.um.feri.ears.statistic.rating_system.Player;
-import org.um.feri.ears.util.Util;
 
 import java.io.*;
 import java.util.ArrayList;
@@ -16,9 +15,6 @@ import java.util.stream.Collectors;
 public class RunBenchmarkFromFiles {
 
     public static void main(String[] args) {
-
-        Util.rnd.setSeed(System.currentTimeMillis());
-
 
         String srcFolder = "D:\\Benchmark results\\test_rating_files2";
         String destFolder = "D:\\Benchmark results\\test_rating_files2";

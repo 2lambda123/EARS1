@@ -6,8 +6,8 @@ import org.apache.commons.io.FileUtils;
 import org.apache.commons.io.FilenameUtils;
 import org.apache.commons.lang3.SystemUtils;
 import org.um.feri.ears.algorithms.DummyAlgorithm;
-import org.um.feri.ears.benchmark.DummyBenchmark;
 import org.um.feri.ears.benchmark.Benchmark;
+import org.um.feri.ears.benchmark.DummyBenchmark;
 import org.um.feri.ears.statistic.rating_system.Player;
 import org.um.feri.ears.util.Util;
 
@@ -574,7 +574,6 @@ public class ExecuteTournamentsTest {
 
     private static void performRating(String benchmarkResultsDir, String benchmarkName, String benchmarkId) {
 
-        Util.rnd.setSeed(System.currentTimeMillis());
 
         List<String> problems = new ArrayList<String>();
         List<String> algorithms = new ArrayList<String>();

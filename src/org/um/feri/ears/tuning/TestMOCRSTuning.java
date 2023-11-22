@@ -1,20 +1,19 @@
 package org.um.feri.ears.tuning;
 
-import java.util.ArrayList;
-import java.util.List;
-
 import org.um.feri.ears.algorithms.moo.moead.I_MOEAD;
-import org.um.feri.ears.problems.*;
+import org.um.feri.ears.problems.NumberProblem;
+import org.um.feri.ears.problems.NumberSolution;
+import org.um.feri.ears.problems.StopCriterion;
+import org.um.feri.ears.problems.Task;
 import org.um.feri.ears.problems.moo.real_world.CITOProblem;
 import org.um.feri.ears.quality_indicator.QualityIndicator.IndicatorName;
-import org.um.feri.ears.util.Util;
+
+import java.util.ArrayList;
+import java.util.List;
 
 public class TestMOCRSTuning {
 
     public static void main(String[] args) {
-
-
-        Util.rnd.setSeed(System.currentTimeMillis());
 
         ArrayList<ControlParameter> control_parameters = new ArrayList<ControlParameter>();
         ControlParameter populationSize = new ControlParameter("populationSize", "int", 20, 500);

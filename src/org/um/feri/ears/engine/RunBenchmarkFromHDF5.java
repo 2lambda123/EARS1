@@ -7,7 +7,6 @@ import org.um.feri.ears.algorithms.DummyAlgorithm;
 import org.um.feri.ears.benchmark.Benchmark;
 import org.um.feri.ears.benchmark.DummyBenchmark;
 import org.um.feri.ears.statistic.rating_system.Player;
-import org.um.feri.ears.util.Util;
 
 import java.util.ArrayList;
 
@@ -19,7 +18,6 @@ public class RunBenchmarkFromHDF5 {
 
     public static void main(String[] args) {
 
-        Util.rnd.setSeed(System.currentTimeMillis());
         Benchmark.printInfo = true; //prints one on one results
 
         if (args.length < 2) {

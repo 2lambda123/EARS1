@@ -1,16 +1,16 @@
 package org.um.feri.ears.algorithms.so.abc;
 
-import java.util.ArrayList;
-
-import org.um.feri.ears.algorithms.NumberAlgorithm;
 import org.um.feri.ears.algorithms.AlgorithmInfo;
 import org.um.feri.ears.algorithms.Author;
+import org.um.feri.ears.algorithms.NumberAlgorithm;
 import org.um.feri.ears.problems.DoubleProblem;
 import org.um.feri.ears.problems.NumberSolution;
 import org.um.feri.ears.problems.StopCriterionException;
 import org.um.feri.ears.problems.Task;
-import org.um.feri.ears.util.Util;
 import org.um.feri.ears.util.annotation.AlgorithmParameter;
+import org.um.feri.ears.util.random.RNG;
+
+import java.util.ArrayList;
 
 public class ABC extends NumberAlgorithm {
 
@@ -110,18 +110,18 @@ public class ABC extends NumberAlgorithm {
         int t = 0, i = 0;
 
         while (t < foodNumber) {
-            if (Util.nextDouble() < population.get(i).getProb()) {
+            if (RNG.nextDouble() < population.get(i).getProb()) {
                 t++;
 
                 //A randomly chosen solution is used in producing a mutant solution of the solution i
-                neighbour = Util.nextInt(foodNumber);
+                neighbour = RNG.nextInt(foodNumber);
                 while (neighbour == i) //Randomly selected solution must be different from the solution i
-                    neighbour = Util.nextInt(foodNumber);
+                    neighbour = RNG.nextInt(foodNumber);
 
                 //The parameter to be changed is determined randomly
-                param2change = Util.nextInt(task.problem.getNumberOfDimensions());
+                param2change = RNG.nextInt(task.problem.getNumberOfDimensions());
 
-                phi = Util.nextDouble(-1, 1);
+                phi = RNG.nextDouble(-1, 1);
 
                 newValue = population.get(i).getValue(param2change) + (population.get(i).getValue(param2change) - population.get(neighbour).getValue(param2change)) * phi;
                 newValue = task.problem.setFeasible(newValue, param2change);
@@ -173,14 +173,14 @@ public class ABC extends NumberAlgorithm {
         for (int i = 0; i < foodNumber; i++) {
 
             //A randomly chosen solution is used in producing a mutant solution of the solution i
-            neighbour = Util.nextInt(foodNumber);
+            neighbour = RNG.nextInt(foodNumber);
             while (neighbour == i) //Randomly selected solution must be different from the solution i
-                neighbour = Util.nextInt(foodNumber);
+                neighbour = RNG.nextInt(foodNumber);
 
             //The parameter to be changed is determined randomly
-            param2change = Util.nextInt(task.problem.getNumberOfDimensions());
+            param2change = RNG.nextInt(task.problem.getNumberOfDimensions());
 
-            phi = Util.nextDouble(-1, 1);
+            phi = RNG.nextDouble(-1, 1);
 
             newValue = population.get(i).getValue(param2change) + (population.get(i).getValue(param2change) - population.get(neighbour).getValue(param2change)) * phi;
             newValue = task.problem.setFeasible(newValue, param2change);

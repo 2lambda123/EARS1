@@ -7,15 +7,13 @@ import org.um.feri.ears.algorithms.moo.paes.D_PAES;
 import org.um.feri.ears.algorithms.moo.pesa2.D_PESAII;
 import org.um.feri.ears.algorithms.moo.spea2.D_SPEA2;
 import org.um.feri.ears.benchmark.Benchmark;
-import org.um.feri.ears.benchmark.SOBenchmark;
 import org.um.feri.ears.benchmark.CEC2009Benchmark;
+import org.um.feri.ears.quality_indicator.QualityIndicator.IndicatorName;
 import org.um.feri.ears.visualization.graphing.GraphSet;
 import org.um.feri.ears.visualization.graphing.MOGraphSet;
 import org.um.feri.ears.visualization.graphing.PlotType;
 import org.um.feri.ears.visualization.graphing.data.GraphDataManager;
 import org.um.feri.ears.visualization.graphing.data.GraphDataSet;
-import org.um.feri.ears.quality_indicator.QualityIndicator.IndicatorName;
-import org.um.feri.ears.util.Util;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -26,7 +24,6 @@ public class Main_MO
 {
 	public static void main(String[] args) 
 	{
-        Util.rnd.setSeed(System.currentTimeMillis());
         Benchmark.printInfo = true; //prints one on one results
         ArrayList<MOAlgorithm> players = new ArrayList<MOAlgorithm>();
         players.add(new D_MOEAD_DRA());

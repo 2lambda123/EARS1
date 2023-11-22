@@ -1,13 +1,13 @@
 package org.um.feri.ears.algorithms.moo.nsga3;
 
-import java.util.ArrayList;
-import java.util.Iterator;
-import java.util.List;
-
 import org.apache.commons.lang3.tuple.ImmutablePair;
 import org.apache.commons.lang3.tuple.Pair;
 import org.um.feri.ears.problems.NumberSolution;
-import org.um.feri.ears.util.Util;
+import org.um.feri.ears.util.random.RNG;
+
+import java.util.ArrayList;
+import java.util.Iterator;
+import java.util.List;
 
 /**
  * Created by ajnebro on 5/11/14.
@@ -110,7 +110,7 @@ public class ReferencePoint<N extends Number> {
     }
 
     public NumberSolution<N> RandomMember() {
-        int index = this.potentialMembers.size() > 1 ? Util.rnd.nextInt(this.potentialMembers.size()) : 0;
+        int index = this.potentialMembers.size() > 1 ? RNG.nextInt(this.potentialMembers.size()) : 0;
         return this.potentialMembers.get(index).getLeft();
     }
 

@@ -1,13 +1,15 @@
 package org.um.feri.ears.algorithms.so.ff;
 
-import org.um.feri.ears.algorithms.NumberAlgorithm;
 import org.um.feri.ears.algorithms.AlgorithmInfo;
 import org.um.feri.ears.algorithms.Author;
-import org.um.feri.ears.problems.*;
-import org.um.feri.ears.util.comparator.ProblemComparator;
-import org.um.feri.ears.util.Util;
+import org.um.feri.ears.algorithms.NumberAlgorithm;
+import org.um.feri.ears.problems.DoubleProblem;
+import org.um.feri.ears.problems.NumberSolution;
+import org.um.feri.ears.problems.StopCriterionException;
+import org.um.feri.ears.problems.Task;
 import org.um.feri.ears.util.annotation.AlgorithmParameter;
-
+import org.um.feri.ears.util.comparator.ProblemComparator;
+import org.um.feri.ears.util.random.RNG;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -178,7 +180,7 @@ public class FireflyAlgorithm extends NumberAlgorithm {
                     for (k = 0; k < task.problem.getNumberOfDimensions(); k++) {
                         //alex: based on Yang's matlab code r is generated for each dimension
                         scale = Math.abs(ub.get(k) - lb.get(k)); //alex: C++ version has scale bug!
-                        r = Util.nextDouble(lb.get(k), ub.get(k));
+                        r = RNG.nextDouble(lb.get(k), ub.get(k));
                         double tmpf = alpha * (r - 0.5) * scale;
                         //the formula below is C++ version
                         //ffa[i][k] = ffa[i][k]*(1.0-beta)+ffa_tmp[j][k]*beta+tmpf;

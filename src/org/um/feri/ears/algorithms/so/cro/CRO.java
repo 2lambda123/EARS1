@@ -1,11 +1,8 @@
 package org.um.feri.ears.algorithms.so.cro;
 
-import java.util.ArrayList;
-import java.util.List;
-
-import org.um.feri.ears.algorithms.NumberAlgorithm;
 import org.um.feri.ears.algorithms.AlgorithmInfo;
 import org.um.feri.ears.algorithms.Author;
+import org.um.feri.ears.algorithms.NumberAlgorithm;
 import org.um.feri.ears.operators.PolynomialMutationSO;
 import org.um.feri.ears.operators.SBXCrossoverSO;
 import org.um.feri.ears.operators.TournamentSelection;
@@ -13,9 +10,12 @@ import org.um.feri.ears.problems.DoubleProblem;
 import org.um.feri.ears.problems.NumberSolution;
 import org.um.feri.ears.problems.StopCriterionException;
 import org.um.feri.ears.problems.Task;
-import org.um.feri.ears.util.comparator.ProblemComparator;
-import org.um.feri.ears.util.Util;
 import org.um.feri.ears.util.annotation.AlgorithmParameter;
+import org.um.feri.ears.util.comparator.ProblemComparator;
+import org.um.feri.ears.util.random.RNG;
+
+import java.util.ArrayList;
+import java.util.List;
 
 public class CRO extends NumberAlgorithm {
 
@@ -155,7 +155,7 @@ public class CRO extends NumberAlgorithm {
 		int quantity = (int) (rho * n * m);
 		coralReef = new ArrayList<>(n * m);
 		CoralSolution newCoral = new CoralSolution(task.getRandomEvaluatedSolution());
-		Coordinate co = new Coordinate(Util.nextInt(0, n), Util.nextInt(0, m));
+		Coordinate co = new Coordinate(RNG.nextInt(0, n), RNG.nextInt(0, m));
 		newCoral.setCoralPosition(co);
 		coralReef.add(newCoral);
 		
@@ -163,10 +163,10 @@ public class CRO extends NumberAlgorithm {
 			if(task.isStopCriterion())
 				break;
 			newCoral = new CoralSolution(task.getRandomEvaluatedSolution());
-			co = new Coordinate(Util.nextInt(0, n), Util.nextInt(0, m));
+			co = new Coordinate(RNG.nextInt(0, n), RNG.nextInt(0, m));
 			while(getCoralFromPosition(co) != null)
 			{
-				co = new Coordinate(Util.nextInt(0, n), Util.nextInt(0, m));
+				co = new Coordinate(RNG.nextInt(0, n), RNG.nextInt(0, m));
 			}
 			newCoral.setCoralPosition(co);
 			coralReef.add(newCoral);
@@ -185,7 +185,7 @@ public class CRO extends NumberAlgorithm {
 
 	private void selectBroadcastSpawners(int quantity, List<NumberSolution<Double>> spawners, List<NumberSolution<Double>> brooders) {
 
-		int[] per = Util.randomPermutation(coralReef.size());
+		int[] per = RNG.randomPermutation(coralReef.size());
 
 		for (int i = 0; i < coralReef.size(); i++) {
 			
@@ -252,7 +252,7 @@ public class CRO extends NumberAlgorithm {
 		for (NumberSolution<Double> larva : larvae) {
 
  			for (int attempt = 0; attempt < attempts; attempt++) {
-				Coordinate C = new Coordinate(Util.nextInt(0, n), Util.nextInt(0, m));
+				Coordinate C = new Coordinate(RNG.nextInt(0, n), RNG.nextInt(0, m));
 
 				// Add larva to the reef
 				CoralSolution coral = getCoralFromPosition(C);
@@ -284,7 +284,7 @@ public class CRO extends NumberAlgorithm {
 
 		double coin;
 		for (int i = popSize - 1; i > quantity; i--) {
-			coin = Util.rnd.nextDouble();
+			coin = RNG.nextDouble();
 
 			if (coin < pd) {
 				population.remove(population.size() - 1);

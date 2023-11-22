@@ -13,16 +13,13 @@
 
 package org.um.feri.ears.util;
 
-import java.util.ArrayList;
-import java.util.Collection;
-import java.util.Comparator;
-import java.util.HashSet;
-import java.util.List;
-
 import org.um.feri.ears.problems.NumberSolution;
 import org.um.feri.ears.problems.Solution;
 import org.um.feri.ears.problems.moo.ParetoSolution;
 import org.um.feri.ears.util.comparator.SolutionDominanceComparator;
+import org.um.feri.ears.util.random.RNG;
+
+import java.util.*;
 
 /**
  * Created by Antonio J. Nebro on 04/10/14.
@@ -213,7 +210,7 @@ public class SolutionListUtils {
         } else {
             Collection<Integer> positions = new HashSet<>(numberOfSolutionsToBeReturned);
             while (positions.size() < numberOfSolutionsToBeReturned) {
-                int nextPosition = Util.nextInt(0, solutionList.size());
+                int nextPosition = RNG.nextInt(0, solutionList.size());
                 if (!positions.contains(nextPosition)) {
                     positions.add(nextPosition);
                     resultList.add(solutionList.get(nextPosition));
@@ -287,7 +284,7 @@ public class SolutionListUtils {
         } else if (flag == 1) {
             result = solution2;
         } else {
-            if (Util.nextDouble() < 0.5) {
+            if (RNG.nextDouble() < 0.5) {
                 result = solution1;
             } else {
                 result = solution2;
@@ -306,7 +303,7 @@ public class SolutionListUtils {
         } else {
             Collection<Integer> positions = new HashSet<>(numberOfSolutionsToBeReturned);
             while (positions.size() < numberOfSolutionsToBeReturned) {
-                int nextPosition = Util.nextInt(0, source.size());
+                int nextPosition = RNG.nextInt(0, source.size());
                 if (!positions.contains(nextPosition)) {
                     positions.add(nextPosition);
                     resultList.add(source.get(nextPosition));

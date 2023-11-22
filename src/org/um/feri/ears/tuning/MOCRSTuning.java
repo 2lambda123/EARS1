@@ -1,27 +1,13 @@
 package org.um.feri.ears.tuning;
 
-import java.lang.reflect.Constructor;
-import java.lang.reflect.Field;
-import java.lang.reflect.InvocationTargetException;
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.Comparator;
-import java.util.HashMap;
-import java.util.HashSet;
-import java.util.List;
-import java.util.Map.Entry;
-import java.util.Set;
-import java.util.concurrent.ExecutorService;
-import java.util.concurrent.Executors;
-import java.util.concurrent.Future;
-import java.util.concurrent.TimeUnit;
-
 import org.um.feri.ears.algorithms.Algorithm;
 import org.um.feri.ears.algorithms.AlgorithmInfo;
 import org.um.feri.ears.algorithms.MOAlgorithm;
 import org.um.feri.ears.benchmark.AlgorithmRunResult;
 import org.um.feri.ears.benchmark.MOAlgorithmEvalResult;
-import org.um.feri.ears.problems.*;
+import org.um.feri.ears.problems.NumberProblem;
+import org.um.feri.ears.problems.NumberSolution;
+import org.um.feri.ears.problems.Task;
 import org.um.feri.ears.problems.moo.ParetoSolution;
 import org.um.feri.ears.quality_indicator.IndicatorFactory;
 import org.um.feri.ears.quality_indicator.QualityIndicator;
@@ -30,7 +16,17 @@ import org.um.feri.ears.quality_indicator.QualityIndicator.IndicatorType;
 import org.um.feri.ears.statistic.rating_system.GameResult;
 import org.um.feri.ears.statistic.rating_system.Player;
 import org.um.feri.ears.statistic.rating_system.glicko2.TournamentResults;
-import org.um.feri.ears.util.Util;
+import org.um.feri.ears.util.random.RNG;
+
+import java.lang.reflect.Constructor;
+import java.lang.reflect.Field;
+import java.lang.reflect.InvocationTargetException;
+import java.util.*;
+import java.util.Map.Entry;
+import java.util.concurrent.ExecutorService;
+import java.util.concurrent.Executors;
+import java.util.concurrent.Future;
+import java.util.concurrent.TimeUnit;
 
 public class MOCRSTuning<N extends Number> {
 
@@ -128,37 +124,37 @@ public class MOCRSTuning<N extends Number> {
                     break;
 
                 do {
-                    r1 = Util.rnd.nextInt(pop_size);
+                    r1 = RNG.nextInt(pop_size);
                 } while (r1 == i);
 
                 do {
-                    r2 = Util.rnd.nextInt(pop_size);
+                    r2 = RNG.nextInt(pop_size);
                 } while ((r2 == i) || (r2 == r1));
 
                 do {
-                    r3 = Util.rnd.nextInt(pop_size);
+                    r3 = RNG.nextInt(pop_size);
                 } while ((r3 == i) || (r3 == r1) || (r3 == r2));
 
 
                 assignd(D, tmp, pold[i].params);
                 tmpF = pold[i].getF();
                 tmpCR = pold[i].getCR();
-                int n = (int) (Util.rnd.nextDouble() * D);
+                int n = (int) (RNG.nextDouble() * D);
                 // SELF-ADAPTATION OF CONTROL PARAMETERS
-                if (Util.rnd.nextDouble() < tao1) { // F
-                    F = Fl + Util.rnd.nextDouble() * Fu;
+                if (RNG.nextDouble() < tao1) { // F
+                    F = Fl + RNG.nextDouble() * Fu;
                     tmpF = F;
                 } else
                     F = tmpF;
-                if (Util.rnd.nextDouble() < tao2) { // CR
-                    CR = CRl + Util.rnd.nextDouble() * CRu;
+                if (RNG.nextDouble() < tao2) { // CR
+                    CR = CRl + RNG.nextDouble() * CRu;
                     tmpCR = CR;
                 } else
                     CR = tmpCR;
 
                 for (int L = 0; L < D; L++) // perform D binomial trials
                 {
-                    if ((Util.rnd.nextDouble() < CR) || L == (D - 1)) {
+                    if ((RNG.nextDouble() < CR) || L == (D - 1)) {
                         tmp[n] = pold[r1].params[n] + F * (pold[r2].params[n] - pold[r3].params[n]);
                     }
                     n = (n + 1) % D;

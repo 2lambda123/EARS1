@@ -1,21 +1,5 @@
 package org.um.feri.ears.benchmark;
 
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.Comparator;
-import java.util.HashMap;
-import java.util.HashSet;
-import java.util.Iterator;
-import java.util.LinkedHashMap;
-import java.util.LinkedList;
-import java.util.List;
-import java.util.Set;
-import java.util.Map.Entry;
-import java.util.concurrent.ExecutionException;
-import java.util.concurrent.ExecutorService;
-import java.util.concurrent.Executors;
-import java.util.concurrent.Future;
-
 import org.um.feri.ears.algorithms.MOAlgorithm;
 import org.um.feri.ears.problems.NumberProblem;
 import org.um.feri.ears.problems.NumberSolution;
@@ -25,7 +9,14 @@ import org.um.feri.ears.quality_indicator.IndicatorFactory;
 import org.um.feri.ears.quality_indicator.QualityIndicator;
 import org.um.feri.ears.quality_indicator.QualityIndicator.IndicatorName;
 import org.um.feri.ears.quality_indicator.QualityIndicator.IndicatorType;
-import org.um.feri.ears.util.Util;
+import org.um.feri.ears.util.random.RNG;
+
+import java.util.*;
+import java.util.Map.Entry;
+import java.util.concurrent.ExecutionException;
+import java.util.concurrent.ExecutorService;
+import java.util.concurrent.Executors;
+import java.util.concurrent.Future;
 
 public class DoubleEliminationTournament {
 	
@@ -181,8 +172,8 @@ public class DoubleEliminationTournament {
 			ArrayList<MOAlgorithmEvalResult> first, ArrayList<MOAlgorithmEvalResult> second) {
 
 
-		int[] per1 = Util.randomPermutation(first.size());
-		int[] per2 = Util.randomPermutation(second.size());
+		int[] per1 = RNG.randomPermutation(first.size());
+		int[] per2 = RNG.randomPermutation(second.size());
 
 		for(int i = 0; i < per1.length; i++)
 		{
@@ -215,7 +206,7 @@ public class DoubleEliminationTournament {
 
 	private void setWinLose(ArrayList<MOAlgorithmEvalResult> participants, ArrayList<MOAlgorithmEvalResult> win, ArrayList<MOAlgorithmEvalResult> lose) {
 		
-		int[] per = Util.randomPermutation(participants.size());
+		int[] per = RNG.randomPermutation(participants.size());
 		int index = 0;
 		
 		while(index+1 < per.length)
@@ -422,7 +413,7 @@ public class DoubleEliminationTournament {
 	
 	private QualityIndicator getMetric()
 	{
-		return ensemble.get(Util.rnd.nextInt(ensemble.size()));
+		return ensemble.get(RNG.nextInt(ensemble.size()));
 	}
 	
 	class FitnessComparator implements Comparator<MOAlgorithmEvalResult> {

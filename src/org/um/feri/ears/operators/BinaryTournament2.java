@@ -24,7 +24,7 @@ package org.um.feri.ears.operators;
 import org.um.feri.ears.problems.NumberSolution;
 import org.um.feri.ears.problems.moo.ParetoSolution;
 import org.um.feri.ears.util.comparator.SolutionDominanceComparator;
-import org.um.feri.ears.util.Util;
+import org.um.feri.ears.util.random.RNG;
 
 
 /**
@@ -68,7 +68,7 @@ public class BinaryTournament2<N extends Number> {
 
 		if (index == 0) // generate a permutation of indices
 		{
-			a = Util.randomPermutation(population.size());
+			a = RNG.randomPermutation(population.size());
 		}
 
 		NumberSolution<N> solution1, solution2;
@@ -89,7 +89,7 @@ public class BinaryTournament2<N extends Number> {
 			return solution1;
 		else if (solution2.getCrowdingDistance() > solution1.getCrowdingDistance())
 			return solution2;
-		else if (Util.rnd.nextDouble() < 0.5)
+		else if (RNG.nextDouble() < 0.5)
 			return solution1;
 		else
 			return solution2;

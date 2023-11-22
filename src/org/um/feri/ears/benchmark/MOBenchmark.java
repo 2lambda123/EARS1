@@ -1,7 +1,10 @@
 package org.um.feri.ears.benchmark;
 
 import org.um.feri.ears.algorithms.MOAlgorithm;
-import org.um.feri.ears.problems.*;
+import org.um.feri.ears.problems.NumberProblem;
+import org.um.feri.ears.problems.NumberSolution;
+import org.um.feri.ears.problems.StopCriterion;
+import org.um.feri.ears.problems.Task;
 import org.um.feri.ears.problems.moo.ParetoSolution;
 import org.um.feri.ears.quality_indicator.IndicatorFactory;
 import org.um.feri.ears.quality_indicator.QualityIndicator;
@@ -9,7 +12,7 @@ import org.um.feri.ears.quality_indicator.QualityIndicator.IndicatorName;
 import org.um.feri.ears.quality_indicator.QualityIndicator.IndicatorType;
 import org.um.feri.ears.statistic.rating_system.GameResult;
 import org.um.feri.ears.util.comparator.QualityIndicatorComparator;
-import org.um.feri.ears.util.Util;
+import org.um.feri.ears.util.random.RNG;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -56,13 +59,13 @@ public abstract class MOBenchmark<N extends Number> extends Benchmark<ParetoSolu
 
     protected IndicatorName getRandomIndicator() {
         if (indicatorWeights != null) {
-            double rand = Util.rnd.nextDouble();
+            double rand = RNG.nextDouble();
             for (int i = 0; i < indicatorWeights.length; i++) {
                 if (rand < indicatorWeights[i])
                     return indicators.get(i);
             }
         }
-        return indicators.get(Util.nextInt(indicators.size()));
+        return indicators.get(RNG.nextInt(indicators.size()));
     }
 
     @Override
